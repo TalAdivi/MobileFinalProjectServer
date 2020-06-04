@@ -1,2 +1,2 @@
 # MobileFinalProjectServer
-Server side of GrowIt App!
+Server side of GrowIt App! 😀
