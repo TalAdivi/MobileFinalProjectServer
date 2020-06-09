@@ -3,7 +3,7 @@ const router = express.Router()
 const controller = require('../controllers/plantsController')
 
 router.get('*', (req, res) => {
-  controller.test(req, res)
+  controller.apiCall(req, res)
 })
 
 module.exports = router
