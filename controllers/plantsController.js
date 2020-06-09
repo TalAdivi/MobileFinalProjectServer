@@ -43,7 +43,8 @@ const apiCall = async (req, res) => {
   } catch (e) {
     res.status(501).json({
       status: 502,
-      data: null
+      data: null,
+      req: req
     })
   }
 }
