@@ -18,7 +18,8 @@ app.use(
     next()
   })
 
-app.get('/test', plantsAPI)
+// app.get('/api', plantsAPI)
+app.use('/GrowIt/api', plantsAPI);
 
 app.get('*', (req, res) => {
   res.status(404).json({

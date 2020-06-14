@@ -34,11 +34,11 @@ const test = async (req, res) => {
 
 const apiCall = async (req, res) => {
   try {
-    console.log(req)
-    const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=32.09148&lon=34.7818891&exclude="current,hourly,minutely"&appid=5b28e3c836da5db352b2a9441c1354e4&units=metric`)
-
+    // console.log('req')
+    const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${req.params.lat}&lon=${req.params.lon}&exclude="current,hourly,minutely"&appid=5b28e3c836da5db352b2a9441c1354e4&units=metric`)
+    const dbresult = await plantsModel.testFunc(data)
     // console.log('data = ', data)
-    res.status(200).json({ tal: 'adivi', data })
+    res.status(200).json({ tal: 'adivi', dbresult })
 
   } catch (e) {
     res.status(501).json({
