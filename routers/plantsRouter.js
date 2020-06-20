@@ -2,8 +2,12 @@ const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/plantsController')
 
-router.get('/:lat/:lon', (req, res) => {
+router.get('/:type/:lat/:lon', (req, res) => {
   controller.apiCall(req, res)
+})
+
+router.get('/type', (req, res) => {
+  controller.test(req, res)
 })
 
 // default route 
