@@ -41,7 +41,7 @@ plantSchema.statics.testFunc = async function (data, type) {
   humidity = humidity / data.daily.length;
   clouds = clouds / data.daily.length;
   temperture = temperture / data.daily.length;
-  return this.find({ type, months: { $all: [n] }, recommendedClouds: { $lt: clouds + 10 ,  $gt: clouds - 10}, recommendedHumidity: { $lt: humidity + 10 ,  $gt: humidity - 10}, recommendedTemp: { $lt: temperture + 3 ,  $gt: temperture - 3} }, (err) => {
+  return this.find({ type, months: { $all: [n] }, recommendedClouds: { $lt: clouds + 100 ,  $gt: clouds - 100}, recommendedHumidity: { $lt: humidity + 100 ,  $gt: humidity - 100}, recommendedTemp: { $lt: temperture + 30 ,  $gt: temperture - 30} }, (err) => {
     if (err) { console.log('err accrue = ', err.message) }
   })
 }
