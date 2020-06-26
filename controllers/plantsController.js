@@ -49,7 +49,7 @@ const apiCall = async (req, res) => {
 const test = async (req, res) => {
   try {
     const dbresult = await plantsModel.testFunc2()
-    res.status(200).json({ tal: 'adivi', dbresult })
+    res.status(200).json({ dbresult })
   } catch (e) {
     res.status(501).json({
       status: 502,

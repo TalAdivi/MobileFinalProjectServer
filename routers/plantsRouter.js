@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/plantsController')
+// add more controller of types schema
 
 router.get('/:type/:lat/:lon', (req, res) => {
   controller.apiCall(req, res)
