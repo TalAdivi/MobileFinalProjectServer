@@ -26,6 +26,7 @@ plantSchema.statics.findGrowItTypes = function () {
 plantSchema.statics.findByGrowItLogic = async function (data, type) {
   const d = new Date();
   const n = d.getMonth() + 1;
+  const averagefactor = 30;
   let clouds = 0, humidity = 0, temp = 0, temperture = 0;
   for (const day of data.daily) {
     clouds += day.clouds;
@@ -36,7 +37,7 @@ plantSchema.statics.findByGrowItLogic = async function (data, type) {
   humidity = humidity / data.daily.length;
   clouds = clouds / data.daily.length;
   temperture = temperture / data.daily.length;
-  return this.find({ type, months: { $all: [n] }, recommendedClouds: { $lt: clouds + 30 ,  $gt: clouds - 30}, recommendedHumidity: { $lt: humidity + 30 ,  $gt: humidity - 30}, recommendedTemp: { $lt: temperture + 30 ,  $gt: temperture - 30} }, (err) => {
+  return this.find({ type, months: { $all: [n] }, recommendedClouds: { $lt: clouds + averagefactor ,  $gt: clouds - averagefactor}, recommendedHumidity: { $lt: humidity + averagefactor ,  $gt: humidity - averagefactor}, recommendedTemp: { $lt: temperture + averagefactor ,  $gt: temperture - averagefactor} }, (err) => {
     if (err) { console.log('err accrue = ', err.message) }
   })
 }
