@@ -1,14 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/plantsController')
-// add more controller of types schema
 
 router.get('/:type/:lat/:lon', (req, res) => {
-  controller.apiCall(req, res)
+  controller.getItems(req, res)
 })
 
 router.get('/type', (req, res) => {
-  controller.test(req, res)
+  controller.getTypes(req, res)
 })
 
 // default route 

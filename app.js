@@ -18,7 +18,6 @@ app.use(
     next()
   })
 
-// app.get('/api', plantsAPI)
 app.use('/GrowIt/api', plantsAPI);
 
 app.get('*', (req, res) => {

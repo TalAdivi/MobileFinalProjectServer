@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose')
 
+// db schema
 const plantSchema = new Schema({
   name: { type: String, required: true },
   family: { type: String, required: true },
@@ -12,23 +13,17 @@ const plantSchema = new Schema({
   recommendedHumidity: { type: Number, required: true },
   recommendedClouds: { type: Number, required: true }
 })
-// what we need?
-// 1. to get all the kind of family to make flat list of icons in the home page
-plantSchema.statics.testFunc2 = function () {
+
+// return all the types of plants in our db
+plantSchema.statics.findGrowItTypes = function () {
   return this.distinct("type", (err) => {
     if (err) { console.log('err accrue = ', err.message) }
   })
 }
 
-
-
-// 2. get all the suitable plants 
-// check unix time with monthes 
-// 1. bring the date with type and date and than check daily temp 
-// mobile check save data (with expo) / sq lite /secure storage store 
-// notificatins
-// test on mobile app
-plantSchema.statics.testFunc = async function (data, type) {
+// find all items by type and data from weather api
+// logic: Check the month, average temperature, humidity and clouds in the area sent to us and return the appropriate items. 
+plantSchema.statics.findByGrowItLogic = async function (data, type) {
   const d = new Date();
   const n = d.getMonth() + 1;
   let clouds = 0, humidity = 0, temp = 0, temperture = 0;
@@ -41,7 +36,7 @@ plantSchema.statics.testFunc = async function (data, type) {
   humidity = humidity / data.daily.length;
   clouds = clouds / data.daily.length;
   temperture = temperture / data.daily.length;
-  return this.find({ type, months: { $all: [n] }, recommendedClouds: { $lt: clouds + 100 ,  $gt: clouds - 100}, recommendedHumidity: { $lt: humidity + 100 ,  $gt: humidity - 100}, recommendedTemp: { $lt: temperture + 30 ,  $gt: temperture - 30} }, (err) => {
+  return this.find({ type, months: { $all: [n] }, recommendedClouds: { $lt: clouds + 30 ,  $gt: clouds - 30}, recommendedHumidity: { $lt: humidity + 30 ,  $gt: humidity - 30}, recommendedTemp: { $lt: temperture + 30 ,  $gt: temperture - 30} }, (err) => {
     if (err) { console.log('err accrue = ', err.message) }
   })
 }
