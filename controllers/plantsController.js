@@ -22,7 +22,8 @@ const getTypes = async (req, res) => {
   try {
     const dbresult = await plantsModel.findGrowItTypes()
     // res.status(200).json({ dbresult })
-    res.status(404).end("check")
+    res.status(404).send('File not found')
+    // res.status(404).end("check")
   } catch (e) {
     res.status(500).json({
       status: 500,
