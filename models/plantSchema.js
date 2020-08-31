@@ -24,8 +24,8 @@ plantSchema.statics.findGrowItTypes = function () {
 // find all items by type and data from weather api
 // logic: Check the month, average temperature, humidity and clouds in the area sent to us and return the appropriate items. 
 plantSchema.statics.findByGrowItLogic = async function (data, type) {
-  const dateNow = new Date();
-  const month = dateNow.getMonth() + 1;
+  const d = new Date();
+  const n = d.getMonth() + 1;
   const averagefactor = 30;
   let clouds = 0, humidity = 0, temp = 0, temperture = 0;
   for (const day of data.daily) {
@@ -37,7 +37,7 @@ plantSchema.statics.findByGrowItLogic = async function (data, type) {
   humidity = humidity / data.daily.length;
   clouds = clouds / data.daily.length;
   temperture = temperture / data.daily.length;
-  return this.find({ type, months: { $all: [month] }, recommendedClouds: { $lt: clouds + averagefactor ,  $gt: clouds - averagefactor}, recommendedHumidity: { $lt: humidity + averagefactor ,  $gt: humidity - averagefactor}, recommendedTemp: { $lt: temperture + averagefactor ,  $gt: temperture - averagefactor} }, (err) => {
+  return this.find({ type, months: { $all: [n] }, recommendedClouds: { $lt: clouds + averagefactor ,  $gt: clouds - averagefactor}, recommendedHumidity: { $lt: humidity + averagefactor ,  $gt: humidity - averagefactor}, recommendedTemp: { $lt: temperture + averagefactor ,  $gt: temperture - averagefactor} }, (err) => {
     if (err) { console.log('err accrue = ', err.message) }
   })
 }
