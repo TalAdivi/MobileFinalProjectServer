@@ -21,9 +21,9 @@ const getItems = async (req, res) => {
 const getTypes = async (req, res) => {
   try {
     const dbresult = await plantsModel.findGrowItTypes()
-    // res.status(200).json({ dbresult })
-    res.setHeader('Content-Type','text/html')
-    res.status(200).send('File not found')
+    res.status(200).json({ dbresult })
+    // res.setHeader('Content-Type','text/html')
+    // res.status(200).send('File not found')
     // res.status(404).end("check")
   } catch (e) {
     res.status(500).json({
