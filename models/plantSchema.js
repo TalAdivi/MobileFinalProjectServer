@@ -26,7 +26,7 @@ plantSchema.statics.findGrowItTypes = function () {
 plantSchema.statics.findByGrowItLogic = async function (data, type) {
   const d = new Date();
   const n = d.getMonth() + 1;
-  const averagefactor = 50;
+  const averagefactor = 30;
   let clouds = 0, humidity = 0, temp = 0, temperture = 0;
   for (const day of data.daily) {
     clouds += day.clouds;
